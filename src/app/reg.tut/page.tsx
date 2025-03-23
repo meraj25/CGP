@@ -1,22 +1,21 @@
 "use client";
+
 import { signup } from "lib/action/auth";
-import { useState } from "react";
-import { ChangeEvent, FormEvent } from 'react';
+import { useRouter } from "next/navigation";
+import { useState, ChangeEvent, FormEvent } from "react";
 
 
-const [formData, setFormData] = useState<{
-  username: string,
-  email: string,
-  nic: string,
-  password: string,
-  cv: File | null
-}>({
-  username: "",
-  email: "",
-  nic: "",
-  password: "",
-  cv: null
-});
+
+export default function SignupPage() {
+  const [formData, setFormData] = useState({
+    username: "",
+    email: "",
+    nic: "",
+    password: "",
+    cv: null as File | null
+  });
+  const router = useRouter();
+  
   const [message, setMessage] = useState("");
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -24,26 +23,30 @@ const [formData, setFormData] = useState<{
     setFormData({
       ...formData,
       [name]: value
-  })
-};
+    });
+  };
 
-const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-  e.preventDefault();
-  try {
-    const response = await signup(formData);
-    console.log(response);
-    setMessage(response.message || "Signup successful");
-  } catch (error: any) {
-    setMessage(
-      error.response?.message || 
-      error.message || 
-      "Error signing up"
-    );
-  }
+  const handleFileChange = (e: ChangeEvent<HTMLInputElement>) => {
+    setFormData({
+      ...formData,
+      cv: e.target.files ? e.target.files[0] : null
+    });
+  };
 
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    try {
+      const response = await signup(formData);
+      setMessage(response.message || "Signup successful");
+    } catch (error: any) {
+      setMessage(
+        error.response?.message || 
+        error.message || 
+        "Error signing up"
+      );
+    }
+  };
 
-
-  
   return (
     <div className="flex min-h-screen items-center justify-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
       <div className="w-full max-w-md space-y-8">
@@ -129,7 +132,7 @@ const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
                 id="cv"
                 name="cv"
                 type="file"
-                onChange={(e) => setFormData({ ...formData, cv: e.target.files?.[0] || null })}
+                onChange={handleFileChange}
                 className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 text-sm text-gray-600 file:mr-4 file:rounded-md file:border-0 file:bg-indigo-50 file:px-4 file:py-2 file:text-sm file:font-semibold file:text-indigo-600 hover:file:bg-indigo-100"
               />
             </div>
@@ -147,5 +150,4 @@ const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
       </div>
     </div>
   );
-
-};
+}
