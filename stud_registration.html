@@ -285,3 +285,191 @@
     </script>
 </body>
 </html>
+
+
+
+
+
+
+<!-- import React, { useState } from "react";
+import "./Register.css"; // Assuming you want to move your styles to a separate CSS file
+
+const Register = () => {
+  const [activeForm, setActiveForm] = useState("student");
+  const [passwordVisible, setPasswordVisible] = useState({
+    studentPassword: false,
+    studentConfirmPassword: false,
+    tutorPassword: false,
+    tutorConfirmPassword: false,
+  });
+
+  const toggleForm = (formType) => {
+    setActiveForm(formType);
+  };
+
+  const togglePasswordVisibility = (field) => {
+    setPasswordVisible((prev) => ({ ...prev, [field]: !prev[field] }));
+  };
+
+  const validateForm = (type) => {
+    const password = document.getElementById(`${type}-password`).value;
+    const confirmPassword = document.getElementById(`${type}-confirm-password`).value;
+
+    if (password !== confirmPassword) {
+      alert("Passwords do not match!");
+      return false;
+    }
+    return true;
+  };
+
+  return (
+    <div className="container">
+      {/* Toggle Switch */}
+      <div className="toggle-container">
+        <button
+          className={`toggle-btn ${activeForm === "student" ? "active" : ""}`}
+          onClick={() => toggleForm("student")}
+        >
+          <span className="tick-mark">✔</span> Student
+        </button>
+        <button
+          className={`toggle-btn ${activeForm === "tutor" ? "active" : ""}`}
+          onClick={() => toggleForm("tutor")}
+        >
+          <span className="tick-mark">✔</span> Tutor
+        </button>
+      </div>
+
+      <div className="header">Start your journey here...</div>
+
+      {/* Student Registration Form */}
+      {activeForm === "student" && (
+        <form id="student-form" onSubmit={() => validateForm("student")}>
+          <div className="form-group">
+            <input type="text" id="stu-username" placeholder="Username" required minLength="3" />
+            <i className="fas fa-id-card icon"></i>
+          </div>
+          <div className="form-group">
+            <input type="text" id="stu-fullname" placeholder="Full Name" required />
+            <i className="fas fa-user icon"></i>
+          </div>
+          <div className="form-group">
+            <input
+              type="email"
+              id="stu-email"
+              placeholder="Email"
+              required
+              pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
+            />
+            <i className="fas fa-envelope icon"></i>
+          </div>
+          <div className="form-group">
+            <input
+              type="text"
+              id="stu-dob"
+              placeholder="Date of Birth (MM/DD/YYYY)"
+              required
+              onFocus={(e) => (e.target.type = "date")}
+            />
+            <i className="fas fa-calendar-alt icon"></i>
+          </div>
+          <div className="form-group">
+            <input
+              type={passwordVisible.studentPassword ? "text" : "password"}
+              id="stu-password"
+              placeholder="Password"
+              required
+              pattern="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$"
+            />
+            <i className="fas fa-lock icon"></i>
+            <i
+              className="fas fa-eye toggle-password"
+              onClick={() => togglePasswordVisibility("studentPassword")}
+            ></i>
+          </div>
+          <div className="form-group">
+            <input
+              type={passwordVisible.studentConfirmPassword ? "text" : "password"}
+              id="stu-confirm-password"
+              placeholder="Re-enter Password"
+              required
+            />
+            <i className="fas fa-lock icon"></i>
+            <i
+              className="fas fa-eye toggle-password"
+              onClick={() => togglePasswordVisibility("studentConfirmPassword")}
+            ></i>
+          </div>
+          <button type="submit" className="btn">
+            REGISTER AS STUDENT
+          </button>
+        </form>
+      )}
+
+      {/* Tutor Registration Form */}
+      {activeForm === "tutor" && (
+        <form id="tutor-form" onSubmit={() => validateForm("tutor")}>
+          <div className="form-group">
+            <input type="text" id="tutor-username" placeholder="Username" required minLength="3" />
+            <i className="fas fa-id-card icon"></i>
+          </div>
+          <div className="form-group">
+            <input type="text" id="tutor-fullname" placeholder="Full Name" required />
+            <i className="fas fa-user icon"></i>
+          </div>
+          <div className="form-group">
+            <input
+              type="email"
+              id="tutor-email"
+              placeholder="Email"
+              required
+              pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
+            />
+            <i className="fas fa-envelope icon"></i>
+          </div>
+          <div className="form-group">
+            <input type="text" id="tutor-subjects" placeholder="Subjects You Teach" required />
+            <i className="fas fa-book icon"></i>
+          </div>
+          <div className="form-group">
+            <input
+              type={passwordVisible.tutorPassword ? "text" : "password"}
+              id="tutor-password"
+              placeholder="Password"
+              required
+              pattern="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$"
+            />
+            <i className="fas fa-lock icon"></i>
+            <i
+              className="fas fa-eye toggle-password"
+              onClick={() => togglePasswordVisibility("tutorPassword")}
+            ></i>
+          </div>
+          <div className="form-group">
+            <input
+              type={passwordVisible.tutorConfirmPassword ? "text" : "password"}
+              id="tutor-confirm-password"
+              placeholder="Re-enter Password"
+              required
+            />
+            <i className="fas fa-lock icon"></i>
+            <i
+              className="fas fa-eye toggle-password"
+              onClick={() => togglePasswordVisibility("tutorConfirmPassword")}
+            ></i>
+          </div>
+          <button type="submit" className="btn">
+            REGISTER AS TUTOR
+          </button>
+        </form>
+      )}
+
+      <div className="footer">
+        Already have an Account? <a href="#">Login</a>
+      </div>
+    </div>
+  );
+};
+
+export default Register;
+ -->
