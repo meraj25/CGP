@@ -10,7 +10,7 @@ export default function Login() {
   const [password, setPassword] = useState("");
   const [errors, setErrors] = useState<{[key: string]: string}>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [activeTab, setActiveTab] = useState('student');
+  const [activeTab, setActiveTab] = useState('students');
   const [showPassword, setShowPassword] = useState(false);
 
   const router = useRouter();
@@ -121,7 +121,7 @@ export default function Login() {
           {/* Tabs */}
           <div className="flex mb-6 border-b">
             <button 
-              className={`px-4 py-2 w-1/2 text-center ${activeTab === 'students' ? 'bg-green-100 rounded-t-lg' : ''}`}
+              className={`px-4 py-2 w-1/2 text-center ${activeTab === 'students' ? 'bg-green-500 rounded-t-lg' : ''}`}
               onClick={() => setActiveTab('students')}
             >
               STUDENTS
